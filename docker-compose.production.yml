@@ -18,7 +18,7 @@ services:
     depends_on:
       - db
   frontend:
-    image: dartanyun/taski_fronten
+    image: dartanyun/taski_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
