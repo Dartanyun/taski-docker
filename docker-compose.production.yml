@@ -6,11 +6,13 @@ volumes:
 
 services:
   db:
+    container_name: taski_db
     image: postgres:13.10
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data
   backend:
+    container_name: taski_backend
     image: dartanyun/taski_backend
     env_file: .env
     volumes:
@@ -18,12 +20,14 @@ services:
     depends_on:
       - db
   frontend:
+    container_name: taski_frontend
     image: dartanyun/taski_frontend
     env_file: .env
     command: cp -r /app/build/. /static/
     volumes:
       - static_volume:/static
   gateway:
+    container_name: taski_gateway
     image: dartanyun/taski_gateway
     env_file: .env
     volumes:
