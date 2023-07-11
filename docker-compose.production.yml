@@ -10,6 +10,7 @@ services:
     env_file: .env
     volumes:
       - pg_data_production:/var/lib/postgresql/data
+    restart: always
   backend:
     image: dartanyun/taski_backend
     env_file: .env
@@ -17,15 +18,18 @@ services:
       - static_volume:/backend_static
     depends_on:
       - db
+    restart: always
   frontend:
     image: dartanyun/taski_frontend
     env_file: .env
     command: cp -r /app/build/. /static/
     volumes:
       - static_volume:/static
+    restart: always
   gateway:
     image: dartanyun/taski_gateway
     env_file: .env
+    restart: always
     volumes:
       - static_volume:/static/
     ports:
